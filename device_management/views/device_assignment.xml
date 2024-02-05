@@ -1,0 +1,96 @@
+<odoo>
+    <record id="device_assignment_form_view" model="ir.ui.view">
+        <field name="name">device.assignment.form</field>
+        <field name="model">device.assignment</field>
+        <field name="arch" type="xml">
+            <form string="Device Assignment">
+                <header>
+                    <button name="%(display_wizard_action)d" string="Module" class="oe_highlight" type="action"/>
+                    <button name="button_click" string="Approved object" class="oe_highlight" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="change_check" optional="hide"/>
+                            <field name="name" widget="char_emojis" invisible="change_check==True"/>
+                            <field name="date_start"/>
+                            <field name="date_expire"/>
+                            <field name="state"/>
+                            <field name="device_id"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="device_rating" widget="rating"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Widget" name="widget_device">
+                            <group>
+                                <field name="url" widget="url"/>
+                                <field name="email" widget="email"/>
+                                <field name="domain" widget="CopyClipboardChar"/>
+                                <field name="color"/>
+                                <field name="num" widget="percentage"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="device_assignment_tree_view" model="ir.ui.view">
+        <field name="name">device.assignment.tree</field>
+        <field name="model">device.assignment</field>
+        <field name="arch" type="xml">
+            <tree>
+<!--                <header>-->
+<!--                    <button name="button_click" string="label" type="object" states="draft"/>-->
+<!--                </header>-->
+                <field name="change_check" optional="hide"/>
+                <field name="name" invisible="change_check==True"/>
+                <field name="device_id"/>
+                <field name="date_start" widget="remaining_days"/>
+                <field name="date_expire" widget="remaining_days"/>
+                <field name="state"/>
+                <field name="employee_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="device_assignment_action" model="ir.actions.act_window">
+        <field name="name">Device Assignment</field>
+        <field name="res_model">device.assignment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Device Assignment
+            </p>
+        </field>
+    </record>
+
+
+<!--    <record id="device_management_tree_inherit_js_class" model="ir.ui.view">-->
+<!--        <field name="name">device.management.tree.inherit</field>-->
+<!--        <field name="model">device.assignment</field>-->
+<!--        <field name="inherit_id" ref="device_management.device_assignment_tree_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//tree" position="attributes">-->
+<!--                <attribute name="js_class">button_in_tree</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="device_management_tree_approved_js_class" model="ir.ui.view">
+        <field name="name">device.management.tree.inherit</field>
+        <field name="model">device.assignment</field>
+        <field name="inherit_id" ref="device_management.device_assignment_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">approved</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

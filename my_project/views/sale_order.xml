@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<record id="sale_view_inherit123" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="task"/>
+            </xpath>
+<!--            <xpath expr="//field[@name='task']" position="after">-->
+<!--                <button name="remove_task" string="Remove Task" type="object"/>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+
+
+</odoo>

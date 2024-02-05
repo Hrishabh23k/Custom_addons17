@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="sale_order_wizard_form_view" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="SaleOrder">
+                <sheet>
+                    <field name="sale_order_ids"/>
+                </sheet>
+                <footer>
+                    <button name="save_object" string="Save" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_wizard_action" model="ir.actions.act_window">
+        <field name="name">Sale Order Id</field>
+        <field name="res_model">sale.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
